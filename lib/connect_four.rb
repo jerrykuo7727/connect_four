@@ -43,20 +43,18 @@ class ConnectFour
     loop do
       return false if directions.empty?
       direction = directions.shift
+      disk = @last_drop
 
-      disk = next_disk(direction)
-      next if out_of_board?(disk)
-      next if @board[disk[0]][disk[1]] != @turn
+      no_match = nil
+      3.times do
+        disk = next_disk(disk, direction)
+        if out_of_board?(disk) || @board[disk[0]][disk[1]] != @turn
+          no_match = true
+          break
+        end
+      end
 
-      disk = next_disk(direction)
-      next if out_of_board?(disk)
-      next if @board[disk[0]][disk[1]] != @turn
-
-      disk = next_disk(direction)
-      next if out_of_board?(disk)
-      next if @board[disk[0]][disk[1]] != @turn
-
-      return true
+      return true unless no_match
     end
   end
 
