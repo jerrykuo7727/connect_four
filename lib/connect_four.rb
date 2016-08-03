@@ -21,7 +21,7 @@ class ConnectFour
     if @turn == 'R'
       puts "Now is RED's turn."
     else
-      puts "Now is YELLO's turn."
+      puts "Now is YELLOW's turn."
     end
 
     until ["1", "2", "3", "4", "5", "6", "7"].include?(col) do
@@ -79,9 +79,9 @@ class ConnectFour
 
   def switch_player
     if @turn == 'R'
-      @turn == 'Y'
+      @turn = 'Y'
     else
-      @turn == 'R'
+      @turn = 'R'
     end
   end
 
