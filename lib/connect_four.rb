@@ -40,15 +40,35 @@ class ConnectFour
 
   def line_match?
     directions = [[0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0], [-1, 1]]
+    loop do
+      return false if directions.empty?
+      direction = directions.shift
+
+      disk = next_disk(direction)
+      next if out_of_board?(disk)
+      next if @board[disk[0]][disk[1]] != @turn
+
+      disk = next_disk(direction)
+      next if out_of_board?(disk)
+      next if @board[disk[0]][disk[1]] != @turn
+
+      disk = next_disk(direction)
+      next if out_of_board?(disk)
+      next if @board[disk[0]][disk[1]] != @turn
+
+      return true
+    end
   end
 
   private
 
-  def next_disk(direction)
-    [@last_drop[0] + direction[0], @last_drop[1] + direction[1]]
+  def next_disk(disk, direction)
+    row = disk[0] + direction[0]
+    col = disk[1] + direction[1]
+    [row, col]
   end
 
   def out_of_board?(disk)
-    (0..5).include?(disk[0]) && (0..6).include?(disk[1])
+    !((0..5).include?(disk[0]) && (0..6).include?(disk[1]))
   end
 end
