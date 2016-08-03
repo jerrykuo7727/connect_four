@@ -179,7 +179,7 @@ describe ConnectFour do
       it 'returns the next disk' do
         connect_four.instance_variable_set(:@last_drop, [2, 3])
         expect(connect_four.send(:next_disk, [1, -1])).to eql([3, 2])
-        expect(connect_four.send(:next_disk, [-1, 0])).to eql([1, 3])
+        expect(connect_four.send(:next_disk, [-1, -1])).to eql([2, 1])
       end
     end
   end
