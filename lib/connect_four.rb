@@ -1,7 +1,6 @@
 class ConnectFour
   def initialize
-    @turns = ['R', 'Y']
-    @turn = 0
+    @turn = 'R'
     @board = Array.new(6, Array.new(7, '.'))
   end
 
@@ -16,4 +15,6 @@ class ConnectFour
   def is_full?(col)
     @board.all? { |row| row[col] != '.' }
   end
+
+  
 end

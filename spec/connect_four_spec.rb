@@ -24,11 +24,6 @@ describe ConnectFour do
     end
   end
 
-  #describe '#drop' do
-  #  context 'given the column number' do
-  #    it 'drops disk to the column' do
-
-
   describe '#is_full?' do
     context 'given the column number' do
       it 'returns true when the column is full' do
@@ -48,6 +43,48 @@ describe ConnectFour do
       end
     end
   end
+
+  describe '#drop' do
+    context 'given the column number' do
+      let(:test_board) { Array.new([['.', '.', '.', '.', '.', '.', '.'],
+                                    ['.', '.', '.', '.', '.', '.', '.'],
+                                    ['.', 'R', '.', '.', '.', '.', '.'],
+                                    ['.', 'R', '.', '.', '.', '.', '.'],
+                                    ['.', 'R', '.', 'Y', '.', '.', '.'],
+                                    ['.', 'R', '.', 'Y', '.', '.', '.']]) }
+      it 'drops disk to the column' do
+        connect_four.instance_variable_set(:@board, test_board)
+        connect_four.instance_variable_set(:@turn, 'Y')
+        connect_four.drop(1)
+        board = connect_four.instance_variable_get(:@board)
+        expect(board).to eql(Array.new([['.', '.', '.', '.', '.', '.', '.'],
+                                        ['.', 'Y', '.', '.', '.', '.', '.'],
+                                        ['.', 'R', '.', '.', '.', '.', '.'],
+                                        ['.', 'R', '.', '.', '.', '.', '.'],
+                                        ['.', 'R', '.', 'Y', '.', '.', '.'],
+                                        ['.', 'R', '.', 'Y', '.', '.', '.']]))
+        connect_four.instance_variable_set(:@turn, 'R')
+        connect_four.drop(2)
+        board = connect_four.instance_variable_get(:@board)
+        expect(board).to eql(Array.new([['.', '.', '.', '.', '.', '.', '.'],
+                                        ['.', 'Y', '.', '.', '.', '.', '.'],
+                                        ['.', 'R', '.', '.', '.', '.', '.'],
+                                        ['.', 'R', '.', '.', '.', '.', '.'],
+                                        ['.', 'R', '.', 'Y', '.', '.', '.'],
+                                        ['.', 'R', 'R', 'Y', '.', '.', '.']]))
+        connect_four.instance_variable_set(:@turn, 'Y')
+        connect_four.drop(3)
+        board = connect_four.instance_variable_get(:@board)
+        expect(board).to eql(Array.new([['.', '.', '.', '.', '.', '.', '.'],
+                                        ['.', 'Y', '.', '.', '.', '.', '.'],
+                                        ['.', 'R', '.', '.', '.', '.', '.'],
+                                        ['.', 'R', '.', 'Y', '.', '.', '.'],
+                                        ['.', 'R', '.', 'Y', '.', '.', '.'],
+                                        ['.', 'R', 'R', 'Y', '.', '.', '.']]))
+      end
+    end
+  end
+
 
 
 end
