@@ -198,4 +198,16 @@ describe ConnectFour do
       end
     end
   end
+
+  describe '#gameover' do
+    it 'says R winning when R is the winner' do
+      connect_four.instance_variable_set(:@turn, 'R')
+      expect(connect_four.gameover).to eql('RED wins the game!')
+    end
+
+    it 'says Y winning when Y is the winner' do
+      connect_four.instance_variable_set(:@turn, 'Y')
+      expect(connect_four.gameover).to eql('YELLOW wins the game!')
+    end
+  end
 end
