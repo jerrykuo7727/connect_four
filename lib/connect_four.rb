@@ -37,4 +37,8 @@ class ConnectFour
     end
     result
   end
+
+  def line_match?
+    directions = [[0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0], [-1, 1]]
+  end
 end

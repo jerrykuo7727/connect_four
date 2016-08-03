@@ -117,7 +117,7 @@ describe ConnectFour do
       expect(connect_four.display).to eql(result)
     end
   end
-
+=begin
   describe '#line_match?' do
     context 'for 4 same disks on the board' do
       it 'returns true when lateral line' do
@@ -162,6 +162,16 @@ describe ConnectFour do
                       ['.', 'R', 'R', 'R', 'Y', '.', '.']]
         connect_four.instance_variable_set(:@board, test_board)
         expect(connect_four.line_match?).to eql(false)
+      end
+    end
+  end
+=end
+  describe '#next_disk(direction)' do
+    context 'given the direction' do
+      it 'returns the next disk toward the direction' do
+        connect_four.instance_variable_set(:@last_drop, [2, 3])
+        expect(connect_four.next_disk([1, -1])).to eql(3, 2)
+        expect(connect_four.next_disk([1, 0])).to eql(4, 2)
       end
     end
   end
