@@ -5,9 +5,23 @@ class ConnectFour
     @last_drop = nil
   end
 
+  def start
+    puts '------------- Welcome to Connect Four -------------'
+    puts '| First one connect a line of four wins the game! |'
+    puts '---------------------------------------------------'
+    puts
+  end
+
   def ask_column
     col = nil
+    if @turn == 'R'
+      puts "Now is RED's turn."
+    else
+      puts "Now is YELLO's turn."
+    end
+
     until ["1", "2", "3", "4", "5", "6", "7"].include?(col) do
+      print "Enter column to drop disk: "
       col = gets.chomp
     end
     col.to_i - 1
