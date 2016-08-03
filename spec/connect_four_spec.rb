@@ -117,7 +117,7 @@ describe ConnectFour do
       expect(connect_four.display).to eql(result)
     end
   end
-=begin
+
   describe '#line_match?' do
     context 'for 4 same disks on the board' do
       it 'returns true when lateral line' do
@@ -128,28 +128,34 @@ describe ConnectFour do
                       ['.', 'Y', 'Y', 'Y', 'Y', '.', '.'],
                       ['.', 'R', 'R', 'R', 'Y', '.', '.']]
         connect_four.instance_variable_set(:@board, test_board)
+        connect_four.instance_variable_set(:@turn, 'Y')
+        connect_four.instance_variable_set(:@last_drop, [4, 4])
         expect(connect_four.line_match?).to eql(true)
       end
 
       it 'returns true when portrait line' do
         test_board = [['.', '.', '.', '.', '.', '.', '.'],
                       ['.', '.', '.', '.', '.', '.', '.'],
-                      ['.', 'R', '.', '.', '.', '.', '.'],
-                      ['.', 'R', 'R', '.', '.', '.', '.'],
-                      ['.', 'Y', 'Y', 'Y', 'Y', '.', '.'],
+                      ['.', 'R', '.', '.', 'Y', '.', '.'],
+                      ['.', 'R', 'R', '.', 'Y', '.', '.'],
+                      ['.', 'Y', 'Y', 'R', 'Y', '.', '.'],
                       ['.', 'R', 'R', 'R', 'Y', '.', '.']]
         connect_four.instance_variable_set(:@board, test_board)
+        connect_four.instance_variable_set(:@turn, 'Y')
+        connect_four.instance_variable_set(:@last_drop, [2, 4])
         expect(connect_four.line_match?).to eql(true)
       end
 
       it 'returns true when diagonal line' do
         test_board = [['.', '.', '.', '.', '.', '.', '.'],
-                      ['.', '.', '.', '.', 'Y', '.', '.'],
-                      ['.', 'R', '.', '.', 'Y', '.', '.'],
-                      ['.', 'R', 'Y', '.', 'Y', '.', '.'],
+                      ['.', '.', '.', '.', '.', '.', '.'],
+                      ['.', 'R', '.', '.', '.', '.', '.'],
+                      ['.', 'R', 'R', '.', 'Y', '.', '.'],
                       ['.', 'Y', 'Y', 'R', 'Y', '.', '.'],
                       ['.', 'R', 'R', 'Y', 'R', '.', '.']]
         connect_four.instance_variable_set(:@board, test_board)
+        connect_four.instance_variable_set(:@turn, 'R')
+        connect_four.instance_variable_set(:@last_drop, [2, 1])
         expect(connect_four.line_match?).to eql(true)
       end
 
@@ -161,11 +167,13 @@ describe ConnectFour do
                       ['.', 'Y', 'Y', 'Y', 'R', '.', '.'],
                       ['.', 'R', 'R', 'R', 'Y', '.', '.']]
         connect_four.instance_variable_set(:@board, test_board)
+        connect_four.instance_variable_set(:@turn, 'Y')
+        connect_four.instance_variable_set(:@last_drop, [3, 3])
         expect(connect_four.line_match?).to eql(false)
       end
     end
   end
-=end
+
   describe '#next_disk' do
     context 'given the direction toward' do
       it 'returns the next disk' do
@@ -178,16 +186,16 @@ describe ConnectFour do
 
   describe '#out_of_board?' do
     context 'given a disk postion' do
-      it 'returns true when in board' do
-        expect(connect_four.send(:out_of_board?, [1, 2])).to eql(true)
-        expect(connect_four.send(:out_of_board?, [3, 0])).to eql(true)
-        expect(connect_four.send(:out_of_board?, [5, 6])).to eql(true)
+      it 'returns false when out of board' do
+        expect(connect_four.send(:out_of_board?, [-1, 5])).to eql(true)
+        expect(connect_four.send(:out_of_board?, [6, 2])).to eql(true)
+        expect(connect_four.send(:out_of_board?, [1, 7])).to eql(true)
       end
 
-      it 'returns false when out of board' do
-        expect(connect_four.send(:out_of_board?, [-1, 5])).to eql(false)
-        expect(connect_four.send(:out_of_board?, [6, 2])).to eql(false)
-        expect(connect_four.send(:out_of_board?, [1, 7])).to eql(false)
+      it 'returns true when in board' do
+        expect(connect_four.send(:out_of_board?, [1, 2])).to eql(false)
+        expect(connect_four.send(:out_of_board?, [3, 0])).to eql(false)
+        expect(connect_four.send(:out_of_board?, [5, 6])).to eql(false)
       end
     end
   end
