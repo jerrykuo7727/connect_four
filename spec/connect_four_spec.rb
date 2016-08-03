@@ -49,12 +49,12 @@ describe ConnectFour do
 
   describe '#drop' do
     context 'given the column number' do
-      let(:test_board) { Array.new([['.', '.', '.', '.', '.', '.', '.'],
-                                    ['.', '.', '.', '.', '.', '.', '.'],
-                                    ['.', 'R', '.', '.', '.', '.', '.'],
-                                    ['.', 'R', '.', '.', '.', '.', '.'],
-                                    ['.', 'R', '.', 'Y', '.', '.', '.'],
-                                    ['.', 'R', '.', 'Y', '.', '.', '.']]) }
+      let(:test_board) { [['.', '.', '.', '.', '.', '.', '.'],
+                          ['.', '.', '.', '.', '.', '.', '.'],
+                          ['.', 'R', '.', '.', '.', '.', '.'],
+                          ['.', 'R', '.', '.', '.', '.', '.'],
+                          ['.', 'R', '.', 'Y', '.', '.', '.'],
+                          ['.', 'R', '.', 'Y', '.', '.', '.']] }
 
       it 'drops disk to the column' do
         connect_four.instance_variable_set(:@board, test_board)
@@ -92,6 +92,22 @@ describe ConnectFour do
     end
   end
 
-
-
+  describe '#display' do
+    it 'displays the board and disks' do
+      test_board = [['.', '.', '.', '.', '.', '.', '.'],
+                    ['.', '.', '.', '.', '.', '.', '.'],
+                    ['.', 'R', '.', '.', '.', '.', '.'],
+                    ['.', 'R', '.', '.', '.', '.', '.'],
+                    ['.', 'R', '.', 'Y', '.', '.', '.'],
+                    ['.', 'R', '.', 'Y', '.', '.', '.']]
+      result = ".  .  .  .  .  .  .\n" <<
+               ".  .  .  .  .  .  .\n" <<
+               ".  R  .  .  .  .  .\n" << 
+               ".  R  .  .  .  .  .\n" <<
+               ".  R  .  Y  .  .  .\n" <<
+               ".  R  .  Y  .  .  .\n"
+      connect_four.instance_variable_set(:@board, test_board)
+      expect(connect_four.display).to eql(result)
+    end
+  end
 end

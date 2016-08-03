@@ -26,4 +26,13 @@ class ConnectFour
     end
     @board[row][col] = @turn
   end
+
+  def display
+    result = ""
+    @board.each do |r|
+      row = r.join('  ') + "\n"
+      result << row
+    end
+    result
+  end
 end
