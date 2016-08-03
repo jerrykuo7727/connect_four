@@ -11,6 +11,7 @@ describe ConnectFour do
         allow(io_obj).to receive(:chomp).and_return("7")
         expect(connect_four.ask_column).to eql(6)
       end
+
       it 'asks user input again if invalid input' do
         io_obj = double
         allow(connect_four).to receive(:gets).and_return(io_obj)
@@ -32,11 +33,13 @@ describe ConnectFour do
         expect(connect_four.is_full?(1)).to eql(true)
         expect(connect_four.is_full?(3)).to eql(true)
       end
+
       it 'returns false when the column is not full' do
         upper = Array.new(3, ['.', '.', '.', '.', '.', '.', '.'])
         lower = Array.new(3, ['.', 'R', '.', 'Y', '.', '.', '.'])
         test_board = upper + lower
         connect_four.instance_variable_set(:@board, test_board)
+
         expect(connect_four.is_full?(1)).to eql(false)
         expect(connect_four.is_full?(2)).to eql(false)
         expect(connect_four.is_full?(3)).to eql(false)
@@ -52,8 +55,10 @@ describe ConnectFour do
                                     ['.', 'R', '.', '.', '.', '.', '.'],
                                     ['.', 'R', '.', 'Y', '.', '.', '.'],
                                     ['.', 'R', '.', 'Y', '.', '.', '.']]) }
+
       it 'drops disk to the column' do
         connect_four.instance_variable_set(:@board, test_board)
+
         connect_four.instance_variable_set(:@turn, 'Y')
         connect_four.drop(1)
         board = connect_four.instance_variable_get(:@board)
@@ -63,6 +68,7 @@ describe ConnectFour do
                                         ['.', 'R', '.', '.', '.', '.', '.'],
                                         ['.', 'R', '.', 'Y', '.', '.', '.'],
                                         ['.', 'R', '.', 'Y', '.', '.', '.']]))
+
         connect_four.instance_variable_set(:@turn, 'R')
         connect_four.drop(2)
         board = connect_four.instance_variable_get(:@board)
@@ -72,6 +78,7 @@ describe ConnectFour do
                                         ['.', 'R', '.', '.', '.', '.', '.'],
                                         ['.', 'R', '.', 'Y', '.', '.', '.'],
                                         ['.', 'R', 'R', 'Y', '.', '.', '.']]))
+
         connect_four.instance_variable_set(:@turn, 'Y')
         connect_four.drop(3)
         board = connect_four.instance_variable_get(:@board)

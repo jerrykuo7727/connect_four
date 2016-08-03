@@ -16,5 +16,14 @@ class ConnectFour
     @board.all? { |row| row[col] != '.' }
   end
 
-  
+  def drop(col)
+    row = nil
+    @board.to_enum.with_index.reverse_each do |r, i|
+      if r[col] == '.'
+        row = i
+        break
+      end
+    end
+    @board[row][col] = @turn
+  end
 end
