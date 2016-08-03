@@ -106,8 +106,57 @@ describe ConnectFour do
                ".  R  .  .  .  .  .\n" <<
                ".  R  .  Y  .  .  .\n" <<
                ".  R  .  Y  .  .  .\n"
+
       connect_four.instance_variable_set(:@board, test_board)
       expect(connect_four.display).to eql(result)
+    end
+  end
+
+  describe '#line_match?' do
+    context 'for 4 same disks on the board' do
+      it 'returns true when lateral line' do
+        test_board = [['.', '.', '.', '.', '.', '.', '.'],
+                      ['.', '.', '.', '.', '.', '.', '.'],
+                      ['.', 'R', '.', '.', '.', '.', '.'],
+                      ['.', 'R', 'R', '.', '.', '.', '.'],
+                      ['.', 'Y', 'Y', 'Y', 'Y', '.', '.'],
+                      ['.', 'R', 'R', 'R', 'Y', '.', '.']]
+        connect_four.instance_variable_set(:@board, test_board)
+        expect(connect_four.line_match?).to eql(true)
+      end
+
+      it 'returns true when portrait line' do
+        test_board = [['.', '.', '.', '.', '.', '.', '.'],
+                      ['.', '.', '.', '.', '.', '.', '.'],
+                      ['.', 'R', '.', '.', '.', '.', '.'],
+                      ['.', 'R', 'R', '.', '.', '.', '.'],
+                      ['.', 'Y', 'Y', 'Y', 'Y', '.', '.'],
+                      ['.', 'R', 'R', 'R', 'Y', '.', '.']]
+        connect_four.instance_variable_set(:@board, test_board)
+        expect(connect_four.line_match?).to eql(true)
+      end
+
+      it 'returns true when diagonal line' do
+        test_board = [['.', '.', '.', '.', '.', '.', '.'],
+                      ['.', '.', '.', '.', 'Y', '.', '.'],
+                      ['.', 'R', '.', '.', 'Y', '.', '.'],
+                      ['.', 'R', 'Y', '.', 'Y', '.', '.'],
+                      ['.', 'Y', 'Y', 'R', 'Y', '.', '.'],
+                      ['.', 'R', 'R', 'Y', 'R', '.', '.']]
+        connect_four.instance_variable_set(:@board, test_board)
+        expect(connect_four.line_match?).to eql(true)
+      end
+
+      it 'returns false when no line' do
+        test_board = [['.', '.', '.', '.', '.', '.', '.'],
+                      ['.', '.', '.', '.', '.', '.', '.'],
+                      ['.', 'R', '.', '.', '.', '.', '.'],
+                      ['.', 'R', 'R', 'Y', '.', '.', '.'],
+                      ['.', 'Y', 'Y', 'Y', 'R', '.', '.'],
+                      ['.', 'R', 'R', 'R', 'Y', '.', '.']]
+        connect_four.instance_variable_set(:@board, test_board)
+        expect(connect_four.line_match?).to eql(false)
+      end
     end
   end
 end
