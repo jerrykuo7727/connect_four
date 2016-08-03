@@ -12,4 +12,8 @@ class ConnectFour
     end
     col.to_i - 1
   end
+
+  def is_full?(col)
+    @board.all? { |row| row[col] != '.' }
+  end
 end
