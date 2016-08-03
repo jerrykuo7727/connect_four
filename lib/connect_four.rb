@@ -47,4 +47,8 @@ class ConnectFour
   def next_disk(direction)
     [@last_drop[0] + direction[0], @last_drop[1] + direction[1]]
   end
+
+  def out_of_board?(disk)
+    (0..5).include?(disk[0]) && (0..6).include?(disk[1])
+  end
 end

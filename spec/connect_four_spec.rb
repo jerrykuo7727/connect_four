@@ -166,7 +166,7 @@ describe ConnectFour do
     end
   end
 =end
-  describe '#next_disk(direction)' do
+  describe '#next_disk' do
     context 'given the direction toward' do
       it 'returns the next disk' do
         connect_four.instance_variable_set(:@last_drop, [2, 3])
@@ -176,18 +176,18 @@ describe ConnectFour do
     end
   end
 
-  describe '#out_of_board?(disk)' do
+  describe '#out_of_board?' do
     context 'given a disk postion' do
       it 'returns true when in board' do
-        expect(connect_four.out_of_board?([1, 2])).to eql(true)
-        expect(connect_four.out_of_board?([3, 0])).to eql(true)
-        expect(connect_four.out_of_board?([5, 6])).to eql(true)
+        expect(connect_four.send(:out_of_board?, [1, 2])).to eql(true)
+        expect(connect_four.send(:out_of_board?, [3, 0])).to eql(true)
+        expect(connect_four.send(:out_of_board?, [5, 6])).to eql(true)
       end
-      
+
       it 'returns false when out of board' do
-        expect(connect_four.out_of_board?([-1, 5])).to eql(false)
-        expect(connect_four.out_of_board?([6, 2])).to eql(false)
-        expect(connect_four.out_of_board?([1, 7])).to eql(false)
+        expect(connect_four.send(:out_of_board?, [-1, 5])).to eql(false)
+        expect(connect_four.send(:out_of_board?, [6, 2])).to eql(false)
+        expect(connect_four.send(:out_of_board?, [1, 7])).to eql(false)
       end
     end
   end
