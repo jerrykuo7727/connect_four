@@ -41,4 +41,10 @@ class ConnectFour
   def line_match?
     directions = [[0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0], [-1, 1]]
   end
+
+  private
+
+  def next_disk(direction)
+    [@last_drop[0] + direction[0], @last_drop[1] + direction[1]]
+  end
 end

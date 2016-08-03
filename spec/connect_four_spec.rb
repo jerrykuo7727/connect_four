@@ -167,11 +167,11 @@ describe ConnectFour do
   end
 =end
   describe '#next_disk(direction)' do
-    context 'given the direction' do
-      it 'returns the next disk toward the direction' do
+    context 'given the direction toward' do
+      it 'returns the next disk' do
         connect_four.instance_variable_set(:@last_drop, [2, 3])
-        expect(connect_four.next_disk([1, -1])).to eql(3, 2)
-        expect(connect_four.next_disk([1, 0])).to eql(4, 2)
+        expect(connect_four.send(:next_disk, [1, -1])).to eql([3, 2])
+        expect(connect_four.send(:next_disk, [-1, 0])).to eql([1, 3])
       end
     end
   end
