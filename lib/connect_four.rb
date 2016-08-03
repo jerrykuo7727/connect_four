@@ -35,6 +35,7 @@ class ConnectFour
       row = r.join('  ') + "\n"
       result << row
     end
+    puts result
     result
   end
 
@@ -56,6 +57,16 @@ class ConnectFour
 
       return true unless no_match
     end
+  end
+
+  def gameover
+    if @turn == 'R'
+      winner = 'RED wins the game!'
+    else
+      winner = 'YELLOW wins the game!'
+    end
+    puts winner
+    winner
   end
 
   private
