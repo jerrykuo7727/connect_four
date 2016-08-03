@@ -10,6 +10,6 @@ class ConnectFour
     until ["1", "2", "3", "4", "5", "6", "7"].include?(col) do
       col = gets.chomp
     end
-    col.to_i
+    col.to_i - 1
   end
 end

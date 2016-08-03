@@ -9,7 +9,7 @@ describe ConnectFour do
         io_obj = double
         allow(connect_four).to receive(:gets).and_return(io_obj)
         allow(io_obj).to receive(:chomp).and_return("7")
-        expect(connect_four.ask_column).to eql(7)
+        expect(connect_four.ask_column).to eql(6)
       end
       it 'asks user input again if invalid input' do
         io_obj = double
@@ -19,8 +19,35 @@ describe ConnectFour do
         allow(io_obj).to receive(:chomp).and_return("8")
         allow(connect_four).to receive(:gets).and_return(io_obj)
         allow(io_obj).to receive(:chomp).and_return("4")
-        expect(connect_four.ask_column).to eql(4)
+        expect(connect_four.ask_column).to eql(3)
       end
     end
   end
+
+  #describe '#drop' do
+  #  context 'given the column number' do
+  #    it 'drops disk to the column' do
+
+
+  describe '#is_full?' do
+    context 'given the column number' do
+      it 'returns true when the column is full' do
+        test_board = Array.new(6, ['.', 'R', '.', 'Y', '.', '.', '.'])
+        connect_four.instance_variable_set(:@board, test_board)
+        expect(connect_four.is_full?(1)).to eql(true)
+        expect(connect_four.is_full?(3)).to eql(true)
+      end
+      it 'returns false when the column is not full' do
+        upper = Array.new(3, ['.', '.', '.', '.', '.', '.', '.'])
+        lower = Array.new(3, ['.', 'R', '.', 'Y', '.', '.', '.'])
+        test_board = upper + lower
+        connect_four.instance_variable_set(:@board, test_board)
+        expect(connect_four.is_full?(1)).to eql(false)
+        expect(connect_four.is_full?(2)).to eql(false)
+        expect(connect_four.is_full?(3)).to eql(false)
+      end
+    end
+  end
+
+
 end
