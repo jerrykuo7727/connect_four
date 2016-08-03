@@ -62,32 +62,38 @@ describe ConnectFour do
         connect_four.instance_variable_set(:@turn, 'Y')
         connect_four.drop(1)
         board = connect_four.instance_variable_get(:@board)
+        last_drop = connect_four.instance_variable_get(:@last_drop)
         expect(board).to eql(Array.new([['.', '.', '.', '.', '.', '.', '.'],
                                         ['.', 'Y', '.', '.', '.', '.', '.'],
                                         ['.', 'R', '.', '.', '.', '.', '.'],
                                         ['.', 'R', '.', '.', '.', '.', '.'],
                                         ['.', 'R', '.', 'Y', '.', '.', '.'],
                                         ['.', 'R', '.', 'Y', '.', '.', '.']]))
+        expect(last_drop).to eql([1,1])
 
         connect_four.instance_variable_set(:@turn, 'R')
         connect_four.drop(2)
         board = connect_four.instance_variable_get(:@board)
+        last_drop = connect_four.instance_variable_get(:@last_drop)
         expect(board).to eql(Array.new([['.', '.', '.', '.', '.', '.', '.'],
                                         ['.', 'Y', '.', '.', '.', '.', '.'],
                                         ['.', 'R', '.', '.', '.', '.', '.'],
                                         ['.', 'R', '.', '.', '.', '.', '.'],
                                         ['.', 'R', '.', 'Y', '.', '.', '.'],
                                         ['.', 'R', 'R', 'Y', '.', '.', '.']]))
+        expect(last_drop).to eql([5,2])
 
         connect_four.instance_variable_set(:@turn, 'Y')
         connect_four.drop(3)
         board = connect_four.instance_variable_get(:@board)
+        last_drop = connect_four.instance_variable_get(:@last_drop)
         expect(board).to eql(Array.new([['.', '.', '.', '.', '.', '.', '.'],
                                         ['.', 'Y', '.', '.', '.', '.', '.'],
                                         ['.', 'R', '.', '.', '.', '.', '.'],
                                         ['.', 'R', '.', 'Y', '.', '.', '.'],
                                         ['.', 'R', '.', 'Y', '.', '.', '.'],
                                         ['.', 'R', 'R', 'Y', '.', '.', '.']]))
+        expect(last_drop).to eql([3,3])
       end
     end
   end

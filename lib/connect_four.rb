@@ -2,6 +2,7 @@ class ConnectFour
   def initialize
     @turn = 'R'
     @board = Array.new(6, Array.new(7, '.'))
+    @last_drop = nil
   end
 
   def ask_column
@@ -25,6 +26,7 @@ class ConnectFour
       end
     end
     @board[row][col] = @turn
+    @last_drop = [row, col]
   end
 
   def display
