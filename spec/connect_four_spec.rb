@@ -28,7 +28,12 @@ describe ConnectFour do
   describe '#is_full?' do
     context 'given the column number' do
       it 'returns true when the column is full' do
-        test_board = Array.new(6, ['.', 'R', '.', 'Y', '.', '.', '.'])
+        test_board = [['.', 'R', '.', 'Y', '.', '.', '.'],
+                      ['.', 'R', '.', 'Y', '.', '.', '.'],
+                      ['.', 'R', '.', 'Y', '.', '.', '.'],
+                      ['.', 'R', '.', 'Y', '.', '.', '.'],
+                      ['.', 'R', '.', 'Y', '.', '.', '.'],
+                      ['.', 'R', '.', 'Y', '.', '.', '.']]
         connect_four.instance_variable_set(:@board, test_board)
         expect(connect_four.is_full?(1)).to eql(true)
         expect(connect_four.is_full?(3)).to eql(true)
@@ -37,7 +42,12 @@ describe ConnectFour do
       it 'returns false when the column is not full' do
         upper = Array.new(3, ['.', '.', '.', '.', '.', '.', '.'])
         lower = Array.new(3, ['.', 'R', '.', 'Y', '.', '.', '.'])
-        test_board = upper + lower
+        test_board = [['.', '.', '.', '.', '.', '.', '.'],
+                      ['.', '.', '.', '.', '.', '.', '.'],
+                      ['.', '.', '.', '.', '.', '.', '.'],
+                      ['.', 'R', '.', 'Y', '.', '.', '.'],
+                      ['.', 'R', '.', 'Y', '.', '.', '.'],
+                      ['.', 'R', '.', 'Y', '.', '.', '.']]
         connect_four.instance_variable_set(:@board, test_board)
 
         expect(connect_four.is_full?(1)).to eql(false)

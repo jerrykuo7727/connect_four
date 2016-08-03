@@ -1,7 +1,12 @@
 class ConnectFour
   def initialize
     @turn = 'R'
-    @board = Array.new(6, Array.new(7, '.'))
+    @board = [['.', '.', '.', '.', '.', '.', '.'],
+              ['.', '.', '.', '.', '.', '.', '.'],
+              ['.', '.', '.', '.', '.', '.', '.'],
+              ['.', '.', '.', '.', '.', '.', '.'],
+              ['.', '.', '.', '.', '.', '.', '.'],
+              ['.', '.', '.', '.', '.', '.', '.']]
     @last_drop = nil
   end
 
@@ -9,7 +14,6 @@ class ConnectFour
     puts '------------- Welcome to Connect Four -------------'
     puts '| First one connect a line of four wins the game! |'
     puts '---------------------------------------------------'
-    puts
   end
 
   def ask_column
@@ -70,6 +74,14 @@ class ConnectFour
       end
 
       return true unless no_match
+    end
+  end
+
+  def switch_player
+    if @turn == 'R'
+      @turn == 'Y'
+    else
+      @turn == 'R'
     end
   end
 
